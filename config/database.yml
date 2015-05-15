@@ -1,12 +1,19 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  username: postgres
+  password:
+  host: <%= ENV["DOCKER_IP"] %>
+  post: 5432
+    
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: railschallenge-city-watch-dev
 
 test:
-  <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
+  timeout: 5000  
+  pool: 5
